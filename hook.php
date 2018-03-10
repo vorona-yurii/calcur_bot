@@ -84,7 +84,7 @@ if($text){
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
-                'one_time_keyboard' => true
+                'one_time_keyboard' => false
             ]);
 
             $telegram->sendMessage([
@@ -95,7 +95,8 @@ if($text){
 
             break;
         }
-        case preg_match('/[^0-9,.]/', $text):{
+        case preg_match('/^[0-9]{1,9}[.,]?[0-9]*$/', $text):{
+            $reply = '';
 
             switch ($_SESSION['calc']){
                 case 0:{
@@ -106,7 +107,7 @@ if($text){
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
-                'one_time_keyboard' => true
+                'one_time_keyboard' => false
             ]);
 
             $telegram->sendMessage([
