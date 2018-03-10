@@ -23,41 +23,11 @@ $keyboard = [
 ]; //keyboard
 
 $keyboard_for_calc = [
-    ["1", "2"],
+    ["1","2"],
     ["3", "4"]
 ]; //keyboard
 
 if($text){
-
-    if(preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text)){
-        $reply = $_SESSION['calc '];
-
-        if(isset($_SESSION['calc '])){
-            switch ($_SESSION['calc']){
-                case 'ZP':{
-                    $reply = calc_zp($text);
-                    break;
-                }
-                default :{
-                    $reply = $_SESSION['calc'];
-                    break;
-                }
-            }
-        }
-
-        $reply_markup = $telegram->replyKeyboardMarkup([
-            'keyboard' => $keyboard,
-            'resize_keyboard' => true,
-            'one_time_keyboard' => false
-        ]);
-
-        $telegram->sendMessage([
-            'chat_id' => $chat_id,
-            'text' => $reply,
-            'reply_markup' => $reply_markup
-        ]);
-
-    }
 
     switch ($text){
 
@@ -155,6 +125,37 @@ if($text){
             $reply = "Введите начисленую зароботную плату";
 
             $_SESSION['calc'] = 'ZP';
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case (preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text) ? true : false):{
+            $reply = 'Пустота';
+
+            if(isset($_SESSION['calc'])){
+                switch ($_SESSION['calc']){
+                    case 'ZP':{
+                        $reply = calc_zp($text);
+                        break;
+                    }
+                    default :{
+                        $reply = $_SESSION['calc'];
+                        break;
+                    }
+                }
+            }
 
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
