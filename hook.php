@@ -152,7 +152,7 @@ if($text){
                 case 'OC':{
                     switch ($text){
                         case 1: {
-                            $reply = "Сколько это <code>A</code>% от <code>B</code>?"./n.". Введите число А";
+                            $reply = "Сколько это <b>A</b>% от <b>B</b>?\n Введите число А";
                             UserEvent($chat_id, 'OC1');
                             break;
                         }
