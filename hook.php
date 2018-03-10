@@ -196,7 +196,7 @@ if($text){
                 }
                 case 'OC2':{
                     $reply = "Введите число <b>B</b>";
-                    UserEvent($chat_id, 'OC1A.'. $text);
+                    UserEvent($chat_id, 'OC2A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC2A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
@@ -207,7 +207,7 @@ if($text){
                 }
                 case 'OC3':{
                     $reply = "Введите число <b>B</b>";
-                    UserEvent($chat_id, 'OC1A.'. $text);
+                    UserEvent($chat_id, 'OC3A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC3A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
@@ -218,7 +218,7 @@ if($text){
                 }
                 case 'OC4':{
                     $reply = "Введите число <b>B</b>";
-                    UserEvent($chat_id, 'OC1A.'. $text);
+                    UserEvent($chat_id, 'OC4A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC4A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
