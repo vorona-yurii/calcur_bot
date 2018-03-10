@@ -34,14 +34,14 @@ function UserSelect($user_id)
 function UserEvent($user_id, $last_event){
 
     if(dbQuery("SELECT * FROM `users` WHERE user_id = '".$user_id."'")->fetch( PDO::FETCH_COLUMN ) == NULL) {
-        dbQuery("INSERT INTO `users` (`user_id`, `last_event`, `date`) VALUES ('" . $user_id . "', '" . $last_event . "','". date() ."')");
+        dbQuery("INSERT INTO `users` (`user_id`, `last_event`, `date`) VALUES ('" . $user_id . "', '" . $last_event . "','". time() ."')");
     }else {
         $sql = "UPDATE `users` SET";
 
         if($last_event){
             $sql .= "`last_event` = '".$last_event."', ";
         }
-        $sql .= "`date` = '". date() ."'";
+        $sql .= "`date` = '". time() ."'";
         $sql .= " WHERE `user_id` = '". $user_id ."'";
 
         dbQuery($sql);
