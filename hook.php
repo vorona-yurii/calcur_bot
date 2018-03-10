@@ -225,16 +225,17 @@ if($text){
                 }
             }
 
-//            $reply_markup = $telegram->replyKeyboardMarkup([
-//                'keyboard' => $keyboard,
-//                'resize_keyboard' => true,
-//                'one_time_keyboard' => false
-//            ]);
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
 
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
+                'parse_mode'=> 'HTML',
                 'text' => $reply,
-               // 'reply_markup' => $reply_markup
+                'reply_markup' => $reply_markup
             ]);
 
             break;
