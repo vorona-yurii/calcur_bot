@@ -8,22 +8,25 @@ function calc_zp($zp){
 }
 
 function calc_oc1($a, $b){
-    $result = $a + $b;
+    $result = round(($a * $b)/100, 2);
 
     return $result;
 }
+
 function calc_oc2($a, $b){
-    $result = $a + $b;
+    $result = round(($a * $b)/100, 2) . "%";
 
     return $result;
 }
+
 function calc_oc3($a, $b){
-    $result = $a + $b;
+    $result = round(($a / $b)*100, 2);
 
     return $result;
 }
+
 function calc_oc4($a, $b){
-    $result = $a + $b;
+    $result = round(($a * $b)/100, 2) . "%";
 
     return $result;
 }

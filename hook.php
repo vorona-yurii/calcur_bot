@@ -32,6 +32,8 @@ if($text){
         case '/start':{
             $reply = "Привет, на связи чат бот бухгалтер конструктор";
 
+            UserEvent($chat_id, 'Null');
+
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
@@ -49,6 +51,8 @@ if($text){
 
         case 'Информация':{
             $reply = "Вывод текста";
+
+            UserEvent($chat_id, 'Null');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
@@ -68,6 +72,8 @@ if($text){
         case 'SpeedБух':{
             $reply = "В разработке";
 
+            UserEvent($chat_id, 'Null');
+
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
@@ -86,6 +92,8 @@ if($text){
         case 'Сайт':{
             $reply = "Сайт";
 
+            UserEvent($chat_id, 'Null');
+
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
@@ -102,7 +110,7 @@ if($text){
         }
 
         case 'Другие кал-ры':{
-            $reply = "Процентный калькулятор - Как найти процент от числа?";
+            $reply = "Процентный калькулятор - Как найти процент от числа?\nВыберите калькулятор";
 
             UserEvent($chat_id, 'OC');
 
@@ -152,22 +160,22 @@ if($text){
                 case 'OC':{
                     switch ($text){
                         case 1: {
-                            $reply = "Сколько это <b>A</b>% от <b>B</b>?\n Введите число А";
+                            $reply = "Сколько это <b>A</b>% от <b>B</b>?\nВведите число <b>А</b>";
                             UserEvent($chat_id, 'OC1');
                             break;
                         }
                         case 2: {
-                            $reply = "2. Введите число А";
+                            $reply = "2. Введите число <b>А</b>";
                             UserEvent($chat_id, 'OC2');
                             break;
                         }
                         case 3: {
-                            $reply = "3. Введите число А";
+                            $reply = "3. Введите число <b>А</b>";
                             UserEvent($chat_id, 'OC3');
                             break;
                         }
                         case 4: {
-                            $reply = "4. Введите число А";
+                            $reply = "4. Введите число <b>А</b>";
                             UserEvent($chat_id, 'OC4');
                             break;
                         }
@@ -175,7 +183,7 @@ if($text){
                     break;
                 }
                 case 'OC1':{
-                    $reply = "Введите число B";
+                    $reply = "Введите число <b>B</b>";
                     UserEvent($chat_id, 'OC1A.'. $text);
                     break;
                 }
@@ -186,7 +194,7 @@ if($text){
                     break;
                 }
                 case 'OC2':{
-                    $reply = "Введите число B";
+                    $reply = "Введите число <b>B</b>";
                     UserEvent($chat_id, 'OC1A.'. $text);
                     break;
                 }
@@ -197,7 +205,7 @@ if($text){
                     break;
                 }
                 case 'OC3':{
-                    $reply = "Введите число B";
+                    $reply = "Введите число <b>B</b>";
                     UserEvent($chat_id, 'OC1A.'. $text);
                     break;
                 }
@@ -208,7 +216,7 @@ if($text){
                     break;
                 }
                 case 'OC4':{
-                    $reply = "Введите число B";
+                    $reply = "Введите число <b>B</b>";
                     UserEvent($chat_id, 'OC1A.'. $text);
                     break;
                 }
@@ -225,17 +233,17 @@ if($text){
                 }
             }
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
+//            $reply_markup = $telegram->replyKeyboardMarkup([
+//                'keyboard' => $keyboard,
+//                'resize_keyboard' => true,
+//                'one_time_keyboard' => false
+//            ]);
 
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
                 'parse_mode'=> 'HTML',
                 'text' => $reply,
-                'reply_markup' => $reply_markup
+                //'reply_markup' => $reply_markup
             ]);
 
             break;
