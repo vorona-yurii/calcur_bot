@@ -165,17 +165,17 @@ if($text){
                             break;
                         }
                         case 2: {
-                            $reply = "2. Введите число <b>А</b>";
+                            $reply = "<b>А</b> это сколько % от <b>В</b>?\nВведите число <b>А</b>";
                             UserEvent($chat_id, 'OC2');
                             break;
                         }
                         case 3: {
-                            $reply = "3. Введите число <b>А</b>";
+                            $reply = "<b>А</b> это <b>В</b>%  от скольки?\nВведите число <b>А</b>";
                             UserEvent($chat_id, 'OC3');
                             break;
                         }
                         case 4: {
-                            $reply = "4. Введите число <b>А</b>";
+                            $reply = "(Рост/Падение) от <b>А</b> до <b>В</b>?\nВведите число <b>А</b>";
                             UserEvent($chat_id, 'OC4');
                             break;
                         }
