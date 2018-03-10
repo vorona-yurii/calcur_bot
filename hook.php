@@ -14,8 +14,8 @@ $chat_id = $result['message']['chat']['id']; //id user
 $name = $result['message']['from']['username']; //Username
 
 $keyboard = [
-    [["Кал-тор зарплаты"],["Другие кал-ры"]],
-    [["SpeedБух"],["Сайт"]],
+    ["Кал-тор зарплаты","Другие кал-ры"],
+    ["SpeedБух", "Сайт"],
     ["Информация"]
 ]; //keyboard
 
