@@ -104,6 +104,8 @@ if($text){
         case 'Другие кал-ры':{
             $reply = "Выберите калькулятор";
 
+            UserEvent($chat_id, 'OC');
+
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard_for_calc,
                 'resize_keyboard' => true,
@@ -141,17 +143,54 @@ if($text){
 
         case (preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text) ? true : false):{
 
-            $reply = "Пустота!";
-
             switch (UserSelect($chat_id)){
                 case 'ZP':{
                     $reply = "Зарплата к выплате работнику \"на руки\":  " .calc_zp($text). " грн";
-                    UserEvent($chat_id, '0');
-
+                    break;
+                }
+                case 'OC':{
+                    switch ($text){
+                        case 1: {
+                            $reply = "1";
+                            UserEvent($chat_id, 'OC1');
+                            break;
+                        }
+                        case 2: {
+                            $reply = "2";
+                            UserEvent($chat_id, 'OC2');
+                            break;
+                        }
+                        case 3: {
+                            $reply = "3";
+                            UserEvent($chat_id, 'OC3');
+                            break;
+                        }
+                        case 4: {
+                            $reply = "4";
+                            UserEvent($chat_id, 'OC4');
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case 'OC1':{
+                    $reply = "Введите число А";
+                    UserEvent($chat_id, 'OC1A');
+                    break;
+                }
+                case 'OC1A':{
+                    $reply = "Введите число B";
+                    UserEvent($chat_id, 'OC1A/'. $text);
+                    break;
+                }
+                case (preg_match_all('/^OC1A/[0-9]{1,9}$/', UserSelect($chat_id)) ? true : false):{
+                    $A = implode($text, '/');
+                    $reply = "Ответ: ". calc_oc1($A[1], $text);
+                    UserEvent($chat_id, 'Null'. $text);
                     break;
                 }
                 default:{
-                    $reply = 'Pusto';
+                    $reply = "По запросу \"<b>".$text."</b>\" ничего не найдено.";
                     break;
                 }
             }

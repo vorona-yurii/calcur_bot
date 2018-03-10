@@ -7,6 +7,11 @@ function calc_zp($zp){
     return $result;
 }
 
+function calc_oc1($a, $b){
+    $result = $a+ $b;
+
+    return $result;
+}
 function dbQuery($data, $lastInsertId = 0){
 
     $dsn = "mysql:host=".DB_HOST.";dbname=".DB_TABLE;
