@@ -23,16 +23,16 @@ $keyboard = [
 ]; //keyboard
 
 $keyboard_for_calc = [
-    ["1","2"],
+    ["1", "2"],
     ["3", "4"]
 ]; //keyboard
 
 if($text){
 
     if(preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text)){
-        $reply = 'Пустота';
+        $reply = $_SESSION['calc '];
 
-        if(isset($_SESSION['calc'])){
+        if(isset($_SESSION['calc '])){
             switch ($_SESSION['calc']){
                 case 'ZP':{
                     $reply = calc_zp($text);
@@ -56,7 +56,7 @@ if($text){
             'text' => $reply,
             'reply_markup' => $reply_markup
         ]);
-        
+
     }
 
     switch ($text){
