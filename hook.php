@@ -2,8 +2,11 @@
 require 'vendor/autoload.php';
 
 require 'config.php';
+require 'function.php';
 
 use Telegram\Bot\Api;
+
+session_start();
 
 $telegram = new Api(BOT_API_KEY); //set api telegram bot
 
@@ -63,6 +66,47 @@ if($text){
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+        case 'Кал-тор зарплаты':{
+            $reply = "Введите начисленую зароботную плату";
+
+            $_SESSION['calc'] = '0';
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => true
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+        case preg_match('/[^0-9,.]/', $text):{
+
+            switch ($_SESSION['calc']){
+                case 0:{
+                    $reply = calc_zp($text);
+                }
+            }
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => true
             ]);
 
             $telegram->sendMessage([
