@@ -12,6 +12,22 @@ function calc_oc1($a, $b){
 
     return $result;
 }
+function calc_oc2($a, $b){
+    $result = $a + $b;
+
+    return $result;
+}
+function calc_oc3($a, $b){
+    $result = $a + $b;
+
+    return $result;
+}
+function calc_oc4($a, $b){
+    $result = $a + $b;
+
+    return $result;
+}
+
 function dbQuery($data, $lastInsertId = 0){
 
     $dsn = "mysql:host=".DB_HOST.";dbname=".DB_TABLE;
