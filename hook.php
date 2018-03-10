@@ -122,6 +122,8 @@ if($text){
         case 'Кал-тор зарплаты':{
             $reply = "Введите начисленую зароботную плату";
 
+            UserEvent($chat_id, 'ZP');
+
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
@@ -139,8 +141,19 @@ if($text){
 
         case (preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text) ? true : false):{
 
-            $reply = calc_zp($text);
+            $reply = "Пустота!";
 
+            switch (UserSelect($chat_id)){
+                case 'ZP':{
+                    $reply = "Зарплата к выплате работнику \"на руки\": " .calc_zp($text). " грн";
+                    break;
+                }
+                default:{
+                    $reply = 'Pusto';
+                    break;
+                }
+            }
+            
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
