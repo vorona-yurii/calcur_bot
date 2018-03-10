@@ -102,7 +102,7 @@ if($text){
         }
 
         case 'Другие кал-ры':{
-            $reply = "Выберите калькулятор";
+            $reply = "Процентный калькулятор - Как найти процент от числа?";
 
             UserEvent($chat_id, 'OC');
 
@@ -152,7 +152,7 @@ if($text){
                 case 'OC':{
                     switch ($text){
                         case 1: {
-                            $reply = "1. Введите число А";
+                            $reply = "Сколько это <code>A</code>% от <code>B</code>?/n. Введите число А";
                             UserEvent($chat_id, 'OC1');
                             break;
                         }
