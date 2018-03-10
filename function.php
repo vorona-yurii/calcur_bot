@@ -26,7 +26,12 @@ function calc_oc3($a, $b){
 }
 
 function calc_oc4($a, $b){
-    $result = round(($a * $b)/100, 2) . "%";
+    if($b < $a){
+        $result = round(($b * 100 / $a) - 100, 2) . "%";
+    }else{
+        $result = round(($a * 100 / $b) - 100, 2) . "%";
+    }
+
 
     return $result;
 }
