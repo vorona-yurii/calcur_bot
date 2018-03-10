@@ -175,7 +175,7 @@ if($text){
                 }
                 case 'OC1':{
                     $reply = "Введите число B";
-                    UserEvent($chat_id, 'OC1A/'. $text);
+                    UserEvent($chat_id, 'OC1A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC1A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
