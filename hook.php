@@ -153,7 +153,7 @@ if($text){
                     break;
                 }
             }
-            
+
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
