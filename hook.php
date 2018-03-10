@@ -151,7 +151,7 @@ if($text){
                 case 'OC':{
                     switch ($text){
                         case 1: {
-                            $reply = "1";
+                            $reply = "1. Введите число А";
                             UserEvent($chat_id, 'OC1');
                             break;
                         }
@@ -174,17 +174,12 @@ if($text){
                     break;
                 }
                 case 'OC1':{
-                    $reply = "Введите число А";
-                    UserEvent($chat_id, 'OC1A');
-                    break;
-                }
-                case 'OC1A':{
                     $reply = "Введите число B";
                     UserEvent($chat_id, 'OC1A/'. $text);
                     break;
                 }
-                case (preg_match_all('/^OC1A/[0-9]{1,9}$/', UserSelect($chat_id)) ? true : false):{
-                    $A = implode($text, '/');
+                case (preg_match_all('/^OC1A/[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
+                    $A = implode(UserSelect($chat_id), '/');
                     $reply = "Ответ: ". calc_oc1($A[1], $text);
                     UserEvent($chat_id, 'Null'. $text);
                     break;
