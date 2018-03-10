@@ -22,11 +22,17 @@ $keyboard = [
     ["Информация"]
 ]; //keyboard
 
+$keyboard_for_calc = [
+    ["1","2"],
+    ["3", "4"]
+]; //keyboard
+
 if($text){
 
     switch ($text){
+
         case '/start':{
-            $reply = "Добро пожаловать в бота!";
+            $reply = "Привет, на связи чат бот бухгалтер конструктор";
 
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
@@ -42,65 +48,20 @@ if($text){
 
             break;
         }
-        case 'Информация':{
-            $reply = "Вывод текста";
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
-
-            break;
-        }
-        case 'SpeedБух':{
-            $reply = "В разработке";
-
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
-
-            break;
-        }
-        case 'Кал-тор зарплаты':{
-            $reply = "Введите начисленую зароботную плату";
-
-            $_SESSION['calc'] = '0';
-
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
-
-            break;
-        }
         case preg_match('/^[0-9]{1,9}[.,]?[0-9]*$/', $text):{
-            $reply = '';
+            $reply = 'Пустота';
 
-            switch ($_SESSION['calc']){
-                case 0:{
-                    $reply = calc_zp($text);
+            if(isset($_SESSION['calc'])){
+                switch ($_SESSION['calc']){
+                    case 'ZP':{
+                        $reply = calc_zp($text);
+                        break;
+                    }
+                    default :{
+                        $reply = '';
+                        break;
+                    }
                 }
             }
 
@@ -118,6 +79,99 @@ if($text){
 
             break;
         }
+
+        case 'Информация':{
+            $reply = "Вывод текста";
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case 'SpeedБух':{
+            $reply = "В разработке";
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case 'Сайт':{
+            $reply = "Сайт";
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case 'Другие кал-ры':{
+            $reply = "Выберите калькулятор";
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard_for_calc,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case 'Кал-тор зарплаты':{
+            $reply = "Введите начисленую зароботную плату";
+
+            $_SESSION['calc'] = 'ZP';
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
         default: {
             $reply = "По запросу \"<b>".$text."</b>\" ничего не найдено.";
 
