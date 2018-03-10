@@ -8,7 +8,7 @@ function calc_zp($zp){
 }
 
 function calc_oc1($a, $b){
-    $result = $a+ $b;
+    $result = $a + $b;
 
     return $result;
 }
