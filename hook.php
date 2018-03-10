@@ -141,7 +141,7 @@ if($text){
             break;
         }
 
-        case preg_match('/^[0-9]{1,9}[.,]?[0-9]*$/', $text):{
+        case preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text):{
             $reply = 'Пустота';
 
             if(isset($_SESSION['calc'])){
@@ -151,7 +151,7 @@ if($text){
                         break;
                     }
                     default :{
-                        $reply = '';
+                        $reply = $_SESSION['calc'];
                         break;
                     }
                 }
