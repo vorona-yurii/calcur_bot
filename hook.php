@@ -6,8 +6,6 @@ require 'function.php';
 
 use Telegram\Bot\Api;
 
-session_start();
-
 $telegram = new Api(BOT_API_KEY); //set api telegram bot
 
 $result = $telegram -> getWebhookUpdates(); //get full information about message
@@ -124,8 +122,6 @@ if($text){
         case 'Кал-тор зарплаты':{
             $reply = "Введите начисленую зароботную плату";
 
-            $_SESSION['calc'] = 'ZP';
-
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
                 'resize_keyboard' => true,
@@ -142,20 +138,8 @@ if($text){
         }
 
         case (preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text) ? true : false):{
-            $reply = 'Пустота';
 
-            if(isset($_SESSION['calc'])){
-                switch ($_SESSION['calc']){
-                    case 'ZP':{
-                        $reply = calc_zp($text);
-                        break;
-                    }
-                    default :{
-                        $reply = $_SESSION['calc'];
-                        break;
-                    }
-                }
-            }
+            $reply = calc_zp($text);
 
             $reply_markup = $telegram->replyKeyboardMarkup([
                 'keyboard' => $keyboard,
