@@ -117,6 +117,8 @@ if($text){
 
         case 'Домой':{
 
+            $reply = "Выберите пунк";
+
             UserEvent($chat_id, 'Null');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
@@ -127,6 +129,8 @@ if($text){
 
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
+                'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
@@ -175,6 +179,8 @@ if($text){
         }
 
         case 'Назад':{
+            
+            $reply = "Выберите пунк";
 
             UserEvent($chat_id, 'Null');
 
@@ -186,6 +192,8 @@ if($text){
 
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
+                'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
