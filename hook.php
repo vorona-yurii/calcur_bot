@@ -206,7 +206,7 @@ if($text){
             UserEvent($chat_id, 'OC1');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
+                'keyboard' => $keyboard_home,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -227,7 +227,7 @@ if($text){
             UserEvent($chat_id, 'OC2');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
+                'keyboard' => $keyboard_home,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -248,7 +248,7 @@ if($text){
             UserEvent($chat_id, 'OC3');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
+                'keyboard' => $keyboard_home,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -269,7 +269,7 @@ if($text){
             UserEvent($chat_id, 'OC4');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
+                'keyboard' => $keyboard_home,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
