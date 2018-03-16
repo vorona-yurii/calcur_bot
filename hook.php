@@ -15,14 +15,17 @@ $chat_id = $result['message']['chat']['id']; //id user
 $name = $result['message']['from']['username']; //Username
 
 $keyboard = [
-    ["Кал-тор зарплаты","Другие кал-ры"],
+    ["Калькулятор зарплаты","Другие кал-ры"],
     ["SpeedБух", "Сайт"],
     ["Информация"]
 ]; //keyboard
 
 $keyboard_for_calc = [
-    ["1","2"],
-    ["3", "4"]
+    ["Сколько это А % от В"],
+    ["А это сколько % от В"],
+    ["А  это В % от скотльки ?"],
+    ["Рост / Падение    от А до В ?"],
+    ["Назад"]
 ]; //keyboard
 
 if($text){
@@ -90,7 +93,7 @@ if($text){
         }
 
         case 'Сайт':{
-            $reply = "Сайт";
+            $reply = "<a href='http://buhconstructor.com'>buhconstructor.com</a>";
 
             UserEvent($chat_id, 'Null');
 
@@ -130,7 +133,7 @@ if($text){
             break;
         }
 
-        case 'Кал-тор зарплаты':{
+        case 'Калькулятор зарплаты':{
             $reply = "Введите начисленую зароботную плату";
 
             UserEvent($chat_id, 'ZP');
@@ -150,37 +153,92 @@ if($text){
             break;
         }
 
+        case 'Сколько это А % от В':{
+            $reply = "Введите число <b>А</b>";
+
+            UserEvent($chat_id, 'OC1');
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard_for_calc,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case "А это сколько % от В":{
+            $reply = "Введите число <b>А</b>";
+
+            UserEvent($chat_id, 'OC2');
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard_for_calc,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case "А  это В % от скотльки ?":{
+            $reply = "Введите число <b>А</b>";
+
+            UserEvent($chat_id, 'OC3');
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard_for_calc,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case "Рост / Падение    от А до В ?":{
+            $reply = "Введите число <b>А</b>";
+
+            UserEvent($chat_id, 'OC4');
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard_for_calc,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
         case (preg_match_all('/^[0-9]{1,9}[.,]?[0-9]*$/', $text) ? true : false):{
 
             switch (UserSelect($chat_id)){
                 case 'ZP':{
                     $reply = "Зарплата к выплате работнику \"на руки\":  " .calc_zp($text). " грн";
                     UserEvent($chat_id, 'Null');
-                    break;
-                }
-                case 'OC':{
-                    switch ($text){
-                        case 1: {
-                            $reply = "Сколько это <b>A</b>% от <b>B</b>?\nВведите число <b>А</b>";
-                            UserEvent($chat_id, 'OC1');
-                            break;
-                        }
-                        case 2: {
-                            $reply = "<b>А</b> это сколько % от <b>В</b>?\nВведите число <b>А</b>";
-                            UserEvent($chat_id, 'OC2');
-                            break;
-                        }
-                        case 3: {
-                            $reply = "<b>А</b> это <b>В</b>%  от скольки?\nВведите число <b>А</b>";
-                            UserEvent($chat_id, 'OC3');
-                            break;
-                        }
-                        case 4: {
-                            $reply = "(Рост/Падение) от <b>А</b> до <b>В</b>?\nВведите число <b>А</b>";
-                            UserEvent($chat_id, 'OC4');
-                            break;
-                        }
-                    }
                     break;
                 }
                 case 'OC1':{
