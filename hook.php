@@ -15,17 +15,19 @@ $chat_id = $result['message']['chat']['id']; //id user
 $name = $result['message']['from']['username']; //Username
 
 $keyboard = [
-    ["Калькулятор зарплаты","Другие кал-ры"],
+    ["Калькулятор зарплаты","Другие калькуляторы"],
     ["SpeedБух", "Сайт"],
     ["Информация"]
 ]; //keyboard
 
 $keyboard_for_calc = [
-    ["Сколько это А % от В"],
-    ["А это сколько % от В"],
-    ["А  это В % от скотльки ?"],
-    ["Рост / Падение    от А до В ?"],
+    ["Сколько это А % от В", "А это сколько % от В"],
+    ["А  это В % от скотльки ?", "Рост / Падение от А до В ?"],
     ["Назад"]
+]; //keyboard
+
+$keyboard_home = [
+    ["Домой"]
 ]; //keyboard
 
 if($text){
@@ -113,6 +115,24 @@ if($text){
             break;
         }
 
+        case 'Домой':{
+
+            UserEvent($chat_id, 'Null');
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard_home,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
         case 'Другие кал-ры':{
             $reply = "Процентный калькулятор - Как найти процент от числа?\nВыберите калькулятор";
 
@@ -147,6 +167,27 @@ if($text){
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
                 'text' => $reply,
+                'parse_mode'=> 'HTML',
+                'reply_markup' => $reply_markup
+            ]);
+
+            break;
+        }
+
+        case 'Назад':{
+
+            UserEvent($chat_id, 'Null');
+
+            $reply_markup = $telegram->replyKeyboardMarkup([
+                'keyboard' => $keyboard,
+                'resize_keyboard' => true,
+                'one_time_keyboard' => false
+            ]);
+
+            $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
@@ -167,6 +208,7 @@ if($text){
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
                 'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
@@ -187,6 +229,7 @@ if($text){
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
                 'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
@@ -207,13 +250,14 @@ if($text){
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
                 'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
             break;
         }
 
-        case "Рост / Падение    от А до В ?":{
+        case "Рост / Падение от А до В ?":{
             $reply = "Введите число <b>А</b>";
 
             UserEvent($chat_id, 'OC4');
@@ -227,6 +271,7 @@ if($text){
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
                 'text' => $reply,
+                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
@@ -293,7 +338,7 @@ if($text){
             }
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
+                'keyboard' => $keyboard_home,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
