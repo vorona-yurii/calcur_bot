@@ -186,8 +186,6 @@ if($text){
 
             $telegram->sendMessage([
                 'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
                 'reply_markup' => $reply_markup
             ]);
 
