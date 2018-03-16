@@ -185,7 +185,7 @@ if($text){
             UserEvent($chat_id, 'Null');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
+                'keyboard' => $keyboard,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
