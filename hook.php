@@ -122,7 +122,7 @@ if($text){
             UserEvent($chat_id, 'Null');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
+                'keyboard' => $keyboard,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -137,7 +137,7 @@ if($text){
             break;
         }
 
-        case 'Другие кал-ры':{
+        case 'Другие калькуляторы':{
             $reply = "Процентный калькулятор - Как найти процент от числа?\nВыберите калькулятор";
 
             UserEvent($chat_id, 'OC');
@@ -179,13 +179,13 @@ if($text){
         }
 
         case 'Назад':{
-            
+
             $reply = "Выберите пунк";
 
             UserEvent($chat_id, 'Null');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
+                'keyboard' => $keyboard_for_calc,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
