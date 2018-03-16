@@ -35,7 +35,7 @@ if($text){
     switch ($text){
 
         case '/start':{
-            $reply = "Привет, на связи чат бот бухгалтер конструктор";
+            $reply = "Здравствуйте, на связи Ваш персональный  бухгалтер конструктор. Жду Ваш вопрос!";
 
             UserEvent($chat_id, 'Null');
 
@@ -163,7 +163,7 @@ if($text){
             UserEvent($chat_id, 'ZP');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
+                'keyboard' => $keyboard_home,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -206,7 +206,7 @@ if($text){
             UserEvent($chat_id, 'OC1');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
+                'keyboard' => $keyboard_for_calc,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -227,7 +227,7 @@ if($text){
             UserEvent($chat_id, 'OC2');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
+                'keyboard' => $keyboard_for_calc,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -248,7 +248,7 @@ if($text){
             UserEvent($chat_id, 'OC3');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
+                'keyboard' => $keyboard_for_calc,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
@@ -269,7 +269,7 @@ if($text){
             UserEvent($chat_id, 'OC4');
 
             $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
+                'keyboard' => $keyboard_for_calc,
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false
             ]);
