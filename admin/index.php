@@ -32,7 +32,7 @@ if(isset($_POST)){
 //        //}
 //        header("Location: ".$_SERVER['REQUEST_URI']);
 //    }
-    var_dump(is_uploaded_file ( $_FILES['img']['name'] ));
+    var_dump(is_uploaded_file( $_FILES['img']['tmp_name'] ));
 
 
 }
