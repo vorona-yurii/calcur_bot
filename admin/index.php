@@ -13,20 +13,8 @@ require '../function.php';
 use Telegram\Bot\Api;
 
 if(isset($_POST)){
-
-    $path_photo = realpath('uploads_img')."/".$_FILES['img']['name'];
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        if (!@copy($_FILES['img']['tmp_name'], $path_photo))
-            echo 'Что-то пошло не так';
-        else
-            echo 'Загрузка удачна';
-    }
-
-    $user['user_id'] = '384607648';
-
     $telegram = new Api(BOT_API_KEY);
+    $user['user_id'] = '384607648';
 
     $telegram->sendMessage([
         'chat_id' => $user['user_id'],
@@ -34,12 +22,19 @@ if(isset($_POST)){
         'parse_mode'=> 'HTML',
     ]);
 
+    if(isset($_FILES['img'])){
+        $path_photo = realpath('uploads_img')."/".$_FILES['img']['name'];
+
+        !@copy($_FILES['img']['tmp_name'], $path_photo);
+    }
+
     $response = $telegram->sendPhoto([
         'chat_id' => $user['user_id'],
         'photo' => $path_photo,
         'caption' => ""
     ]);
 
+    header("Location: index.php");
 }
 
 ?>
@@ -99,7 +94,7 @@ if(isset($_POST)){
                                     <div class="col-sm-10"><textarea name="bulk" id="bulk" cols="100" rows="5"></textarea></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Изображение</label>
-                                    <div class="col-sm-10"><input type="file" name="img"></div>
+                                    <div class="col-sm-10"><input type="file" name="img" accept="image/jpeg,image/png,image/gif"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
