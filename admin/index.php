@@ -16,27 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $telegram = new Api(BOT_API_KEY);
     $user['user_id'] = '384607648';
 
-    var_dump($_POST);
-    var_dump($_FILES);
+    if(!empty($_POST['bulk'])){
+        $telegram->sendMessage([
+            'chat_id' => $user['user_id'],
+            'text' => $_POST['bulk'],
+            'parse_mode'=> 'HTML'
+        ]);
+    }
 
-//    if(!empty($_POST['bulk'])){
-//        $telegram->sendMessage([
-//            'chat_id' => $user['user_id'],
-//            'text' => $_POST['bulk'],
-//            'parse_mode'=> 'HTML'
-//        ]);
-//    }
-//
-//    if(isset($_FILES['img'])){
-//        $path_photo = realpath('uploads_img') ."/". $_FILES['img']['name'];
-//
-//        !@copy($_FILES['img']['tmp_name'], $path_photo);
-//
-//        $response = $telegram->sendPhoto([
-//            'chat_id' => $user['user_id'],
-//            'photo' => $path_photo
-//        ]);
-//    }
+    if(!empty($_FILES['img']['name'])){
+        $path_photo = realpath('uploads_img') ."/". $_FILES['img']['name'];
+
+        !@copy($_FILES['img']['tmp_name'], $path_photo);
+
+        $response = $telegram->sendPhoto([
+            'chat_id' => $user['user_id'],
+            'photo' => $path_photo
+        ]);
+    }
 }
 
 ?>
