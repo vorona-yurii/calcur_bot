@@ -32,8 +32,17 @@ if(isset($_POST)){
 //        //}
 //        header("Location: ".$_SERVER['REQUEST_URI']);
 //    }
-    var_dump($_FILES['img']);
+    //var_dump($_FILES['img']);
 
+    $path = 'uploads_img/';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        if (!@copy($_FILES['img']['tmp_name'], $path . $_FILES['img']['name']))
+            echo 'Что-то пошло не так';
+        else
+            echo 'Загрузка удачна';
+    }
 
 }
 
