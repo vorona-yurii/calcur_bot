@@ -28,10 +28,16 @@ if(isset($_POST)){
 
     $telegram = new Api(BOT_API_KEY);
 
+    $telegram->sendMessage([
+        'chat_id' => $user['user_id'],
+        'text' => $_POST['bulk'],
+        'parse_mode'=> 'HTML',
+    ]);
+
     $response = $telegram->sendPhoto([
         'chat_id' => $user['user_id'],
         'photo' => $path_photo,
-        'caption' => $_POST['bulk']
+        'caption' => ""
     ]);
 
 }
