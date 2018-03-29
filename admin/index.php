@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             'photo' => $path_photo
         ]);
     }
+    unset($_POST);
 }
 
 ?>
