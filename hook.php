@@ -14,7 +14,7 @@ $text = $result['message']['text']; //Text message
 $chat_id = $result['message']['chat']['id']; //id user
 $name = $result['message']['from']['username']; //Username
 
-$keyboard = [
+$keyboard_main = [
     ["Калькулятор зарплаты","Другие калькуляторы"],
     ["SpeedБух", "Сайт"],
     ["Информация"]
@@ -39,17 +39,7 @@ if($text){
 
             UserEvent($chat_id, 'Null');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_main;
 
             break;
         }
@@ -59,17 +49,7 @@ if($text){
 
             UserEvent($chat_id, 'Null');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_main;
 
             break;
         }
@@ -79,17 +59,7 @@ if($text){
 
             UserEvent($chat_id, 'Null');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_main;
 
             break;
         }
@@ -99,18 +69,7 @@ if($text){
 
             UserEvent($chat_id, 'Null');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_main;
 
             break;
         }
@@ -121,18 +80,7 @@ if($text){
 
             UserEvent($chat_id, 'Null');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_main;
 
             break;
         }
@@ -142,17 +90,7 @@ if($text){
 
             UserEvent($chat_id, 'OC');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_for_calc;
 
             break;
         }
@@ -162,18 +100,7 @@ if($text){
 
             UserEvent($chat_id, 'ZP');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_home;
 
             break;
         }
@@ -184,18 +111,7 @@ if($text){
 
             UserEvent($chat_id, 'Null');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_main;
 
             break;
         }
@@ -205,18 +121,7 @@ if($text){
 
             UserEvent($chat_id, 'OC1');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_for_calc;
 
             break;
         }
@@ -226,18 +131,7 @@ if($text){
 
             UserEvent($chat_id, 'OC2');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_for_calc;
 
             break;
         }
@@ -247,39 +141,15 @@ if($text){
 
             UserEvent($chat_id, 'OC3');
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_for_calc;
 
             break;
         }
 
         case "Рост / Падение от А до В ?":{
             $reply = "Введите число <b>А</b>";
-
             UserEvent($chat_id, 'OC4');
-
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_for_calc,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'text' => $reply,
-                'parse_mode'=> 'HTML',
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_for_calc;
 
             break;
         }
@@ -343,31 +213,36 @@ if($text){
                 }
             }
 
-            $reply_markup = $telegram->replyKeyboardMarkup([
-                'keyboard' => $keyboard_home,
-                'resize_keyboard' => true,
-                'one_time_keyboard' => false
-            ]);
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'parse_mode'=> 'HTML',
-                'text' => $reply,
-                'reply_markup' => $reply_markup
-            ]);
+            $keyboard = $keyboard_home;
 
             break;
         }
 
         default: {
             $reply = "По запросу \"<b>".$text."</b>\" ничего не найдено.";
-
-            $telegram->sendMessage([
-                'chat_id' => $chat_id,
-                'parse_mode'=> 'HTML',
-                'text' => $reply
-            ]);
+            $keyboard = false;
         }
+    }
+
+    if($keyboard){
+        $reply_markup = $telegram->replyKeyboardMarkup([
+            'keyboard' => $keyboard,
+            'resize_keyboard' => true,
+            'one_time_keyboard' => false
+        ]);
+
+        $telegram->sendMessage([
+            'chat_id' => $chat_id,
+            'text' => $reply,
+            'parse_mode'=> 'HTML',
+            'reply_markup' => $reply_markup
+        ]);
+    }else {
+        $telegram->sendMessage([
+            'chat_id' => $chat_id,
+            'text' => $reply,
+            'parse_mode' => 'HTML'
+        ]);
     }
 
 }else{
