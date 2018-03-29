@@ -35,7 +35,7 @@ if(isset($_POST)){
         ]);
     }
 
-    unset($_POST);
+    header("Location: index.php");
 }
 
 ?>
