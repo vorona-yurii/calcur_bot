@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             'text' => $_POST['bulk'],
             'parse_mode'=> 'HTML'
         ]);
-        header("Location: index.php");
     }
 
     if(!empty($_FILES['img']['name'])){
