@@ -14,26 +14,6 @@ use Telegram\Bot\Api;
 
 if(isset($_POST)){
 
-//    if (!empty($_POST['bulk'])){
-//
-//        //$users = GetFullUser();
-//        $user['user_id'] = '384607648';
-//
-//        //foreach ($users as $user){
-//
-//            $telegram = new Api(BOT_API_KEY);
-//
-//            $telegram->sendMessage([
-//                'chat_id' => $user['user_id'],
-//                'text' => $_POST['bulk'],
-//                'parse_mode'=> 'HTML'
-//            ]);
-//
-//        //}
-//        header("Location: ".$_SERVER['REQUEST_URI']);
-//    }
-    //var_dump($_FILES['img']);
-
     $path_photo = realpath('uploads_img')."/".$_FILES['img']['name'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -46,7 +26,7 @@ if(isset($_POST)){
 
     $user['user_id'] = '384607648';
 
-    $telegram = new Api('BOT TOKEN');
+    $telegram = new Api(BOT_API_KEY);
 
     $response = $telegram->sendPhoto([
         'chat_id' => $user['user_id'],
