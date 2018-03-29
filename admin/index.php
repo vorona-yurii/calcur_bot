@@ -12,25 +12,29 @@ require '../function.php';
 
 use Telegram\Bot\Api;
 
-if(isset($_POST['bulk'])){
+if(isset($_POST)){
 
-    if (!empty($_POST['bulk'])){
+//    if (!empty($_POST['bulk'])){
+//
+//        //$users = GetFullUser();
+//        $user['user_id'] = '384607648';
+//
+//        //foreach ($users as $user){
+//
+//            $telegram = new Api(BOT_API_KEY);
+//
+//            $telegram->sendMessage([
+//                'chat_id' => $user['user_id'],
+//                'text' => $_POST['bulk'],
+//                'parse_mode'=> 'HTML'
+//            ]);
+//
+//        //}
+//        header("Location: ".$_SERVER['REQUEST_URI']);
+//    }
+    var_dump(is_uploaded_file ( $_FILES['img']['name'] ));
 
-        $users = GetFullUser();
 
-        foreach ($users as $user){
-
-            $telegram = new Api(BOT_API_KEY);
-
-            $telegram->sendMessage([
-                'chat_id' => $user['user_id'],
-                'text' => $_POST['bulk'],
-                'parse_mode'=> 'HTML'
-            ]);
-
-        }
-        header("Location: ".$_SERVER['REQUEST_URI']);
-    }
 }
 
 ?>
@@ -85,11 +89,14 @@ if(isset($_POST['bulk'])){
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form method="post" class="form-horizontal">
+                            <form enctype="multipart/form-data" method="post" class="form-horizontal">
                                 <div class="form-group"><label class="col-sm-2 control-label">Массовая рассылка</label>
                                     <div class="col-sm-10"><textarea name="bulk" id="bulk" cols="100" rows="5"></textarea></div>
                                 </div>
-
+                                <div class="form-group"><label class="col-sm-2 control-label">Изображение</label>
+                                    <div class="col-sm-10"><input type="hidden" name="MAX_FILE_SIZE" value="30000" /></div>
+                                    <div class="col-sm-10"><input type="file" name="img"></div>
+                                </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
