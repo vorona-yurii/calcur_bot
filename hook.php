@@ -36,113 +36,80 @@ if($text){
 
         case '/start':{
             $reply = "Здравствуйте, на связи Ваш персональный  бухгалтер конструктор. Жду Ваш вопрос!";
-
             UserEvent($chat_id, 'Null');
-
             $keyboard = $keyboard_main;
-
             break;
         }
 
         case 'Информация':{
             $reply = "Вывод текста";
-
             UserEvent($chat_id, 'Null');
-
             $keyboard = $keyboard_main;
-
             break;
         }
 
         case 'SpeedБух':{
             $reply = "В разработке";
-
             UserEvent($chat_id, 'Null');
-
             $keyboard = $keyboard_main;
-
             break;
         }
 
         case 'Сайт':{
             $reply = "<a href='http://buhconstructor.com'>buhconstructor.com</a>";
-
             UserEvent($chat_id, 'Null');
-
             $keyboard = $keyboard_main;
-
             break;
         }
 
         case 'Домой':{
 
             $reply = "Выберите пунк";
-
             UserEvent($chat_id, 'Null');
-
             $keyboard = $keyboard_main;
-
             break;
         }
 
         case 'Другие калькуляторы':{
             $reply = "Процентный калькулятор - Как найти процент от числа?\nВыберите калькулятор";
-
             UserEvent($chat_id, 'OC');
-
             $keyboard = $keyboard_for_calc;
-
             break;
         }
 
         case 'Калькулятор зарплаты':{
             $reply = "Введите начисленую зароботную плату";
-
             UserEvent($chat_id, 'ZP');
-
             $keyboard = $keyboard_home;
-
             break;
         }
 
         case 'Назад':{
 
             $reply = "Выберите пунк";
-
             UserEvent($chat_id, 'Null');
-
             $keyboard = $keyboard_main;
-
             break;
         }
 
         case 'Сколько это А % от В':{
             $reply = "Введите число <b>А</b>";
-
             UserEvent($chat_id, 'OC1');
-
             $keyboard = $keyboard_for_calc;
-
             break;
         }
 
         case "А это сколько % от В":{
             $reply = "Введите число <b>А</b>";
-
             UserEvent($chat_id, 'OC2');
-
             $keyboard = $keyboard_for_calc;
-
             break;
         }
 
         case "А  это В % от скотльки ?":{
             $reply = "Введите число <b>А</b>";
-
             UserEvent($chat_id, 'OC3');
-
             $keyboard = $keyboard_for_calc;
-
             break;
         }
 
@@ -150,7 +117,6 @@ if($text){
             $reply = "Введите число <b>А</b>";
             UserEvent($chat_id, 'OC4');
             $keyboard = $keyboard_for_calc;
-
             break;
         }
 

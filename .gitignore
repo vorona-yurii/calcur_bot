@@ -57,3 +57,6 @@ vendor/
 
 #Config
 config.php
+
+admin/.htaccess
+admin/.htpasswd

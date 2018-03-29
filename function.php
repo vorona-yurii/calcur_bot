@@ -1,30 +1,54 @@
 <?php
-require 'config.php';
 
+require 'config.php';
+/**
+ * @param $zp
+ * @return float
+ */
 function calc_zp($zp){
     $result = $zp - 0.18 * $zp - 0.015 * $zp;
 
     return $result;
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @return float
+ */
 function calc_oc1($a, $b){
     $result = round(($a * $b)/100, 2);
 
     return $result;
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @return float
+ */
 function calc_oc2($a, $b){
     $result = round(($a * $b)/100, 2);
 
     return $result;
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @return float
+ */
 function calc_oc3($a, $b){
     $result = round(($a / $b)*100, 2);
 
     return $result;
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @return float
+ */
 function calc_oc4($a, $b){
     if($b < $a){
         $result = round(($b * 100 / $a) - 100, 2);
@@ -36,6 +60,11 @@ function calc_oc4($a, $b){
     return $result;
 }
 
+/**
+ * @param $data
+ * @param int $lastInsertId
+ * @return PDOStatement|string
+ */
 function dbQuery($data, $lastInsertId = 0){
 
     $dsn = "mysql:host=".DB_HOST.";dbname=".DB_TABLE;
@@ -52,7 +81,19 @@ function dbQuery($data, $lastInsertId = 0){
 
     return $result;
 }
+/**
+ * @return mixed
+ */
+function GetFullUser()
+{
+    $result =  dbQuery("SELECT * FROM `users`")->fetchAll( PDO::FETCH_ASSOC );
 
+    return $result;
+}
+/**
+ * @param $user_id
+ * @return mixed
+ */
 function UserSelect($user_id)
 {
    $result =  dbQuery("SELECT * FROM `users` WHERE user_id = '".$user_id."'")->fetch( PDO::FETCH_ASSOC );
@@ -60,6 +101,10 @@ function UserSelect($user_id)
    return $result['last_event'];
 }
 
+/**
+ * @param $user_id
+ * @param $last_event
+ */
 function UserEvent($user_id, $last_event){
 
     if(dbQuery("SELECT * FROM `users` WHERE user_id = '".$user_id."'")->fetch( PDO::FETCH_COLUMN ) == NULL) {
@@ -72,6 +117,38 @@ function UserEvent($user_id, $last_event){
         }
         $sql .= "`date` = '". time() ."'";
         $sql .= " WHERE `user_id` = '". $user_id ."'";
+
+        dbQuery($sql);
+    }
+}
+
+
+/**
+ * @param $key
+ * @return mixed
+ */
+function getSettings($key){
+
+    $result =  dbQuery("SELECT * FROM `settings` WHERE `key` = '".$key."'")->fetch( PDO::FETCH_ASSOC );
+
+    return $result['value'];
+}
+
+/**
+ * @param $key
+ * @param $value
+ */
+function setSettings($key, $value){
+
+    if(dbQuery("SELECT * FROM `settings` WHERE `key` = '".$key."'")->fetch( PDO::FETCH_COLUMN ) == NULL) {
+        dbQuery("INSERT INTO `settings` (`key`, `value`) VALUES ('" . $key . "', '" . $value . "')");
+    }else {
+        $sql = "UPDATE `settings` SET";
+
+        if($value){
+            $sql .= "`value` = '".$value."'";
+        }
+        $sql .= " WHERE `key` = '". $key ."'";
 
         dbQuery($sql);
     }
