@@ -34,17 +34,16 @@ if(isset($_POST)){
 //    }
     //var_dump($_FILES['img']);
 
-//    $path = 'uploads_img/';
-//
-//    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-//    {
-//        if (!@copy($_FILES['img']['tmp_name'], $path . $_FILES['img']['name']))
-//            echo 'Что-то пошло не так';
-//        else
-//            echo 'Загрузка удачна';
-//    }
+    $path = realpath('uploads_img')."/";
 
-    echo realpath('uploads_img/');
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        if (!@copy($_FILES['img']['tmp_name'], $path . $_FILES['img']['name']))
+            echo 'Что-то пошло не так';
+        else
+            echo 'Загрузка удачна';
+    }
+
 }
 
 ?>
