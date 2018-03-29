@@ -12,7 +12,7 @@ require '../function.php';
 
 use Telegram\Bot\Api;
 
-if(isset($_POST)){
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $telegram = new Api(BOT_API_KEY);
     $user['user_id'] = '384607648';
 
@@ -34,8 +34,6 @@ if(isset($_POST)){
             'photo' => $path_photo
         ]);
     }
-
-    header("Location: index.php");
 }
 
 ?>
