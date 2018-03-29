@@ -34,15 +34,25 @@ if(isset($_POST)){
 //    }
     //var_dump($_FILES['img']);
 
-    $path = realpath('uploads_img')."/";
+    $path_photo = realpath('uploads_img')."/".$_FILES['img']['name'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        if (!@copy($_FILES['img']['tmp_name'], $path . $_FILES['img']['name']))
+        if (!@copy($_FILES['img']['tmp_name'], $path_photo))
             echo 'Что-то пошло не так';
         else
             echo 'Загрузка удачна';
     }
+
+    $user['user_id'] = '384607648';
+
+    $telegram = new Api('BOT TOKEN');
+
+    $response = $telegram->sendPhoto([
+        'chat_id' => $user['user_id'],
+        'photo' => $path_photo,
+        'caption' => $_POST['bulk']
+    ]);
 
 }
 
@@ -103,7 +113,6 @@ if(isset($_POST)){
                                     <div class="col-sm-10"><textarea name="bulk" id="bulk" cols="100" rows="5"></textarea></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Изображение</label>
-                                    <div class="col-sm-10"><input type="hidden" name="MAX_FILE_SIZE" value="30000" /></div>
                                     <div class="col-sm-10"><input type="file" name="img"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
