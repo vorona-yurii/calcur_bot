@@ -31,9 +31,6 @@ function postFacebook($app_id, $app_secret, $app_token, $text='', $img_source=''
         $data['source'] = $img_source;
     }
 
-    var_dump($data);
-    exit();
-
     try {
         // Returns a `Facebook\FacebookResponse` object
         if($data['source']){
