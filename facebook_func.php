@@ -22,8 +22,6 @@ function postFacebook($app_id, $app_secret, $app_token, $text='', $img_source=''
     ]);
 
     $page_id = getPageId($app_token);
-
-    // описание параметров есть в документации
     $data = [];
 
     if(!empty($text)){
@@ -32,6 +30,9 @@ function postFacebook($app_id, $app_secret, $app_token, $text='', $img_source=''
     if(!empty($img_source)){
         $data['source'] = $img_source;
     }
+
+    var_dump($data);
+    exit();
 
     try {
         // Returns a `Facebook\FacebookResponse` object
