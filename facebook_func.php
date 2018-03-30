@@ -14,7 +14,7 @@ function getPageId($app_token){
     return $pageId['id'];
 }
 
-function postFacebook($app_id, $app_secret, $app_token){
+function postFacebook($app_id, $app_secret, $app_token, $text='', $img_source=''){
     $fb = new \Facebook\Facebook([
         'app_id'  => $app_id,
         'app_secret' => $app_secret,
@@ -24,14 +24,24 @@ function postFacebook($app_id, $app_secret, $app_token){
     $page_id = getPageId($app_token);
 
     // описание параметров есть в документации
-    $data = [
-        'message' => 'It works!',
-        'source' => $fb->fileToUpload('uploads_img/hola-vpn.png'),
-    ];
+    $data = [];
+
+    if(!empty($text)){
+        $data['message'] = $text;
+    }
+    if(!empty($img_source)){
+        $data['source'] = $img_source;
+    }
 
     try {
         // Returns a `Facebook\FacebookResponse` object
-        $response = $fb->post('/me/photos', $data, $app_token);
+        if($data['source']){
+            $response = $fb->post('/me/photos', $data, $app_token);
+        }elseif($data['source'] && $data['message']){
+            $response = $fb->post('/me/photos', $data, $app_token);
+        }elseif($data['message']){
+            $response = $fb->post("/{$page_id}/feed", $data, $app_token);
+        }
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;

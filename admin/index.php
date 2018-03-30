@@ -31,8 +31,6 @@ if(getSettings('app_token')){
     $app_token = '';
 }
 
-postFacebook($app_id, $app_secret, $app_token);
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $telegram = new Api(BOT_API_KEY);
     $user['user_id'] = '384607648';
@@ -55,6 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             'photo' => $path_photo
         ]);
     }
+
+    if(!empty($app_id) && !empty($app_secret) && !empty($app_token) ){
+        postFacebook($app_id, $app_secret, $app_token, $_POST['bulk'], $path_photo);
+    }
+
     unset($_POST);
 }
 
