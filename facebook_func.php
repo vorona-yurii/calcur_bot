@@ -18,20 +18,20 @@ function postFacebook($app_id, $app_secret, $app_token){
     $fb = new \Facebook\Facebook([
         'app_id'  => $app_id,
         'app_secret' => $app_secret,
-        'default_graph_version' => 'v2.4',
+        'default_graph_version' => 'v2.10',
     ]);
 
     $page_id = getPageId($app_token);
 
     // описание параметров есть в документации
-    $linkData = [
-        'link' => 'https://yuv.com.ua',
+    $data = [
         'message' => 'It works!',
+        'source' => $fb->fileToUpload('uploads_img/hola-vpn.png'),
     ];
 
     try {
         // Returns a `Facebook\FacebookResponse` object
-        $response = $fb->post("/{$page_id}/feed", $linkData, $app_token);
+        $response = $fb->post('/me/photos', $data, '{access-token}');
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;
