@@ -35,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $telegram = new Api(BOT_API_KEY);
     $user['user_id'] = '384607648';
 
+    $path_photo_to_fb = '';
+
     if(!empty($_POST['bulk'])){
         $telegram->sendMessage([
             'chat_id' => $user['user_id'],
@@ -46,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!empty($_FILES['img']['name'])){
         $path_photo = realpath('uploads_img') ."/". $_FILES['img']['name'];
 
+        $path_photo_to_fb = 'uploads_img'."/". $_FILES['img']['name'];
+
         !@copy($_FILES['img']['tmp_name'], $path_photo);
 
         $response = $telegram->sendPhoto([
@@ -55,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if(!empty($app_id) && !empty($app_secret) && !empty($app_token) ){
-        postFacebook($app_id, $app_secret, $app_token, $_POST['bulk'], $path_photo);
+        postFacebook($app_id, $app_secret, $app_token, $_POST['bulk'], $path_photo_to_fb);
     }
 
     unset($_POST);
