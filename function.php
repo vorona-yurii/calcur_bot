@@ -51,9 +51,9 @@ function calc_oc3($a, $b){
  */
 function calc_oc4($a, $b){
     if($b > $a){
-        $result = round(100 * ((abs($a) - abs($b))/$b), 2);
-    }else{
         $result = round(100 * ((abs($b) - abs($a))/$a), 2);
+    }else{
+        $result = round(100 * ((abs($a) - abs($b))/$b), 2);
     }
 
 
