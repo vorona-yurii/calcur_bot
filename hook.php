@@ -15,14 +15,14 @@ $chat_id = $result['message']['chat']['id']; //id user
 $name = $result['message']['from']['username']; //Username
 
 $keyboard_main = [
-    ["Калькулятор зарплаты","Другие калькуляторы"],
+    ["Калькулятор зарплаты","Процентный калькулятор"],
     ["SpeedБух", "Сайт"],
     ["Информация"]
 ]; //keyboard
 
 $keyboard_for_calc = [
-    ["Сколько это А % от В", "А это сколько % от В"],
-    ["А  это В % от скотльки ?", "Рост / Падение от А до В ?"],
+    ["Найти процент от числа", "Вычесть проценты от числа"],
+    ["Прибавить проценты к числу", "Рост/ Падение (процентное изменение)"],
     ["Назад"]
 ]; //keyboard
 
@@ -70,8 +70,8 @@ if($text){
             break;
         }
 
-        case 'Другие калькуляторы':{
-            $reply = "Процентный калькулятор - Как найти процент от числа?\nВыберите калькулятор";
+        case "Процентный калькулятор":{
+            $reply = "Выберите калькулятор";
             UserEvent($chat_id, 'OC');
             $keyboard = $keyboard_for_calc;
             break;
@@ -92,29 +92,29 @@ if($text){
             break;
         }
 
-        case 'Сколько это А % от В':{
-            $reply = "Введите число <b>А</b>";
+        case 'Найти процент от числа':{
+            $reply = "Введите % —...";
             UserEvent($chat_id, 'OC1');
             $keyboard = $keyboard_for_calc;
             break;
         }
 
-        case "А это сколько % от В":{
-            $reply = "Введите число <b>А</b>";
+        case "Вычесть проценты от числа":{
+            $reply = "Введите % —...";
             UserEvent($chat_id, 'OC2');
             $keyboard = $keyboard_for_calc;
             break;
         }
 
-        case "А  это В % от скотльки ?":{
-            $reply = "Введите число <b>А</b>";
+        case "Прибавить проценты к числу":{
+            $reply = "Введите % —...";
             UserEvent($chat_id, 'OC3');
             $keyboard = $keyboard_for_calc;
             break;
         }
 
-        case "Рост / Падение от А до В ?":{
-            $reply = "Введите число <b>А</b>";
+        case "Рост/ Падение (процентное изменение)":{
+            $reply = "Введите первое значение —...";
             UserEvent($chat_id, 'OC4');
             $keyboard = $keyboard_for_calc;
             break;
@@ -129,46 +129,51 @@ if($text){
                     break;
                 }
                 case 'OC1':{
-                    $reply = "Введите число <b>B</b>";
+                    $reply = "Введите число —...";
                     UserEvent($chat_id, 'OC1A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC1A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". calc_oc1($A[1], $text);
+                    $reply = "Ответ: ". $A[1] ."% от ". $text ." = ". calc_oc1($A[1], $text);
                     UserEvent($chat_id, 'Null');
                     break;
                 }
                 case 'OC2':{
-                    $reply = "Введите число <b>B</b>";
+                    $reply = "Введите число —...";
                     UserEvent($chat_id, 'OC2A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC2A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". calc_oc2($A[1], $text). "%";
+                    $reply = "Ответ: ". $A[1] ."% от числа ". $text ." = ". calc_oc2($A[1], $text);
                     UserEvent($chat_id, 'Null');
                     break;
                 }
                 case 'OC3':{
-                    $reply = "Введите число <b>B</b>";
+                    $reply = "Введите число —...";
                     UserEvent($chat_id, 'OC3A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC3A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". calc_oc3($A[1], $text);
+                    $reply = "Ответ: ". $A[1] ."% к числу ". $text ." = ". calc_oc2($A[1], $text);
                     UserEvent($chat_id, 'Null');
                     break;
                 }
                 case 'OC4':{
-                    $reply = "Введите число <b>B</b>";
+                    $reply = "Введите второе значение —...";
                     UserEvent($chat_id, 'OC4A.'. $text);
                     break;
                 }
                 case (preg_match_all('/^OC4A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". calc_oc4($A[1], $text). "%";
+                    if($text > $A[1]){
+                        $reply = "Число увеличилось на ". calc_oc4($A[1], $text). "%";
+                    }else{
+                        $reply = "Число уменьшилось на ". calc_oc4($A[1], $text). "%";
+                    }
+
                     UserEvent($chat_id, 'Null');
                     break;
                 }
