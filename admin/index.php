@@ -9,8 +9,29 @@ require '../vendor/autoload.php';
 
 require '../config.php';
 require '../function.php';
+require "../facebook_func.php";
 
 use Telegram\Bot\Api;
+
+if(getSettings('app_id')){
+    $app_id = getSettings('app_id');
+}else{
+    $app_id = '';
+}
+
+if(getSettings('app_secret')){
+    $app_secret = getSettings('app_secret');
+}else{
+    $app_secret = '';
+}
+
+if(getSettings('app_token')){
+    $app_token = getSettings('app_token');
+}else{
+    $app_token = '';
+}
+
+postFacebook($app_id, $app_secret, $app_token);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $telegram = new Api(BOT_API_KEY);
