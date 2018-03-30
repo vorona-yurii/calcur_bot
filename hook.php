@@ -157,7 +157,7 @@ if($text){
                 }
                 case (preg_match_all('/^OC3A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". $A[1] ."% к числу ". $text ." = ". calc_oc2($A[1], $text);
+                    $reply = "Ответ: ". $A[1] ."% к числу ". $text ." = ". calc_oc3($A[1], $text);
                     UserEvent($chat_id, 'Null');
                     break;
                 }
