@@ -31,7 +31,7 @@ function postFacebook($app_id, $app_secret, $app_token){
 
     try {
         // Returns a `Facebook\FacebookResponse` object
-        $response = $fb->post('/me/photos', $data, '{access-token}');
+        $response = $fb->post('/me/photos', $data, $app_token);
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;
