@@ -28,7 +28,7 @@ function postFacebook($app_id, $app_secret, $app_token, $text='', $img_source=''
         $data['message'] = $text;
     }
     if(!empty($img_source)){
-        $data['source'] = $img_source;
+        $data['source'] = $fb->fileToUpload($img_source);
     }
 
     try {
