@@ -39,7 +39,7 @@ function calc_oc2($a, $b){
  * @return float
  */
 function calc_oc3($a, $b){
-    $result = $b + ((round($b)/100) * $a), 2;
+    $result = $b + ((round($b)/100) * $a);
 
     return $result;
 }
