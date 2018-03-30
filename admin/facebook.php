@@ -9,20 +9,27 @@ require_once "../config.php";
 require_once "../function.php";
 
 if(isset($_POST)){
-    setSettings('merchant_id', $_POST['merchant_id']);
-    setSettings('key_payment', $_POST['key_payment']);
+    setSettings('app_id', $_POST['app_id']);
+    setSettings('app_secret', $_POST['app_secret']);
+    setSettings('app_token', $_POST['app_token']);
 }
 
-if(getSettings('merchant_id')){
-    $merchant_id = getSettings('merchant_id');
+if(getSettings('app_id')){
+    $app_id = getSettings('app_id');
 }else{
-    $merchant_id = '';
+    $app_id = '';
 }
 
-if(getSettings('key_payment')){
-    $key_payment = getSettings('key_payment');
+if(getSettings('app_secret')){
+    $app_secret = getSettings('app_secret');
 }else{
-    $key_payment = '';
+    $app_secret = '';
+}
+
+if(getSettings('app_token')){
+    $app_token = getSettings('app_token');
+}else{
+    $app_token = '';
 }
 
 ?>
@@ -78,11 +85,14 @@ if(getSettings('key_payment')){
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <form method="post" class="form-horizontal">
-                                <div class="form-group"><label class="col-sm-2 control-label">ID мерчанта:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" name="merchant_id" value="<?=$merchant_id;?>"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Идентификатор приложения:</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="app_id" value="<?=$app_id;?>"></div>
                                 </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Ключ платежа:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" name="key_payment" value="<?=$key_payment;?>"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Секрет приложения:</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="app_secret" value="<?=$app_secret;?>"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Маркер доступа:</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="app_token" value="<?=$app_token;?>"></div>
                                 </div>
 
                                 <div class="hr-line-dashed"></div>
