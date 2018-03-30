@@ -50,12 +50,7 @@ function calc_oc3($a, $b){
  * @return float
  */
 function calc_oc4($a, $b){
-    if($b > $a){
-        $result = round(100 * ((abs($b) - abs($a))/$a), 2);
-    }else{
-        $result = round(100 * ((abs($b) - abs($a))/$a), 2);
-    }
-
+    $result = 100 * ((abs($b) - abs($a))/$a);
 
     return $result;
 }
