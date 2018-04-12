@@ -124,8 +124,8 @@ if($text){
 
             switch (UserSelect($chat_id)){
                 case 'ZP':{
-                    $reply = "Зарплата к выплате работнику \"на руки\":  " .calc_zp($text). " грн";
-                    UserEvent($chat_id, 'Null');
+                    $reply = "Зарплата к выплате работнику \"на руки\":  " .calc_zp($text). " грн\nЧто бы посчитать еще раз, введите начисленую зароботную плату";
+                    UserEvent($chat_id, 'ZP');
                     break;
                 }
                 case 'OC1':{
