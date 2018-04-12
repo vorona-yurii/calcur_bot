@@ -135,8 +135,8 @@ if($text){
                 }
                 case (preg_match_all('/^OC1A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". $A[1] ."% от ". $text ." = ". calc_oc1($A[1], $text);
-                    UserEvent($chat_id, 'Null');
+                    $reply = "Ответ: ". $A[1] ."% от ". $text ." = ". calc_oc1($A[1], $text) ."\nЧто бы посчитать еще раз, введите % — ...";
+                    UserEvent($chat_id, 'OC1');
                     break;
                 }
                 case 'OC2':{
@@ -146,8 +146,8 @@ if($text){
                 }
                 case (preg_match_all('/^OC2A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". $A[1] ."% от числа ". $text ." = ". calc_oc2($A[1], $text);
-                    UserEvent($chat_id, 'Null');
+                    $reply = "Ответ: ". $A[1] ."% от числа ". $text ." = ". calc_oc2($A[1], $text) ."\nЧто бы посчитать еще раз, введите % — ...";
+                    UserEvent($chat_id, 'OC2');
                     break;
                 }
                 case 'OC3':{
@@ -157,8 +157,8 @@ if($text){
                 }
                 case (preg_match_all('/^OC3A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
-                    $reply = "Ответ: ". $A[1] ."% к числу ". $text ." = ". calc_oc3($A[1], $text);
-                    UserEvent($chat_id, 'Null');
+                    $reply = "Ответ: ". $A[1] ."% к числу ". $text ." = ". calc_oc3($A[1], $text) ."\nЧто бы посчитать еще раз, введите % — ...";
+                    UserEvent($chat_id, 'OC3');
                     break;
                 }
                 case 'OC4':{
@@ -169,12 +169,12 @@ if($text){
                 case (preg_match_all('/^OC4A[.]?[0-9]{1,9}/', UserSelect($chat_id)) ? true : false):{
                     $A = explode('.', UserSelect($chat_id));
                     if($text > $A[1]){
-                        $reply = "Число увеличилось на ". calc_oc4($A[1], $text). "%";
+                        $reply = "Число увеличилось на ". calc_oc4($A[1], $text). "%\nЧто бы посчитать еще раз, введите первое число — ...";
                     }else{
-                        $reply = "Число уменьшилось на ". calc_oc4($A[1], $text). "%";
+                        $reply = "Число уменьшилось на ". calc_oc4($A[1], $text). "%\nЧто бы посчитать еще раз, введите первое число — ...";
                     }
 
-                    UserEvent($chat_id, 'Null');
+                    UserEvent($chat_id, 'OC4');
                     break;
                 }
 
