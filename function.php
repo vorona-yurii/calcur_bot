@@ -103,25 +103,50 @@ function UserSelect($user_id)
 
 /**
  * @param $user_id
- * @param $last_event
+ * @return mixed
  */
-function UserEvent($user_id, $last_event){
+function UserSelectId($user_id)
+{
+    $result =  dbQuery("SELECT * FROM `users` WHERE user_id = '".$user_id."'")->fetch( PDO::FETCH_ASSOC );
+
+    return $result;
+}
+
+/**
+ * @param $user_id
+ * @param $last_event
+ * @param string $name
+ */
+function UserEvent($user_id, $last_event, $name = ''){
 
     if(dbQuery("SELECT * FROM `users` WHERE user_id = '".$user_id."'")->fetch( PDO::FETCH_COLUMN ) == NULL) {
-        dbQuery("INSERT INTO `users` (`user_id`, `last_event`, `date`) VALUES ('" . $user_id . "', '" . $last_event . "','". time() ."')");
+        dbQuery("INSERT INTO `users` (`user_id`, `last_event`, `date`, `name`) VALUES ('" . $user_id . "', '" . $last_event . "','". time() ."','". $name ."')");
     }else {
         $sql = "UPDATE `users` SET";
 
         if($last_event){
             $sql .= "`last_event` = '".$last_event."', ";
         }
-        $sql .= "`date` = '". time() ."'";
+        $userSelect = UserSelectId($user_id);
+        if(!empty($name) && $userSelect['name'] === NULL){
+            $sql .= "`name` = '".$name."', ";
+        }
+        $sql .= "`date` = '". time() ."',";
+        $sql .= "`lastnotif` = '0'";
         $sql .= " WHERE `user_id` = '". $user_id ."'";
 
         dbQuery($sql);
     }
 }
 
+/**
+ * @param $user_id
+ * @param $lastnotif
+ */
+function LastNotif($user_id, $lastnotif)
+{
+    $result =  dbQuery("UPDATE `users` SET `lastnotif` = '".intval($lastnotif)."' WHERE `user_id` = '". $user_id ."'");
+}
 
 /**
  * @param $key
