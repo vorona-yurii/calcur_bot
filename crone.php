@@ -25,7 +25,7 @@ $telegram = new Api(BOT_API_KEY); //set api telegram bot
 
 $telegram->sendMessage([
     'chat_id' => $user['user_id'],
-    'text' => 'Привет!\xF0\x9F\x98\x8E',
+    'text' => "Привет!\xF0\x9F\x98\x8E",
     'parse_mode'=> 'HTML'
 ]);
 
