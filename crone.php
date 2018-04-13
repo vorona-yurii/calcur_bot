@@ -45,11 +45,6 @@ foreach ($users as $user){
         }
     }
 
-    if($user['lastnotif'] == 99999){
-        LastNotif($user['id'], 0);
-        $reply = "3 дня";
-    }
-
     if($diff_days == 3 && $user['lastnotif'] == 0){
         LastNotif($user['id'], 3);
         $reply = "3 дня";
