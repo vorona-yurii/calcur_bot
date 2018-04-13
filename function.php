@@ -143,9 +143,9 @@ function UserEvent($user_id, $last_event, $name = ''){
  * @param $user_id
  * @param $lastnotif
  */
-function LastNotif($user_id, $lastnotif)
+function LastNotif($id, $lastnotif)
 {
-    $result =  dbQuery("UPDATE `users` SET `lastnotif` = '".$lastnotif."' WHERE `user_id` = '". $user_id ."'");
+    $result =  dbQuery("UPDATE `users` SET `lastnotif` = '".$lastnotif."' WHERE `id` = '". $id ."'");
 }
 
 /**
