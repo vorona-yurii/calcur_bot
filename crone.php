@@ -11,12 +11,12 @@ require 'config.php';
 require 'function.php';
 
 //$users = GetFullUser();
-$user = [
+$user = array(
     'id' => '1',
     'user_id' => '384607648',
     'lastnotif' => 'NULL',
     'name' => 'Yuv'
-];
+);
 $sms = "Здравтсвуйте, %name%! На связи Бухгалтер конструктор \xF0\x9F\x98\x8E!\nМы с вами уже %time% не общались.\nЯ соскучился! Я всегда готов Вам помочь упростить Вашу работу!";
 use Telegram\Bot\Api;
 
